@@ -47,6 +47,7 @@ public class SimpleTestCasesTest {
 
 	@Test(enabled=false)
 	public void loginPassTest() {
+		try {
 		homePagePOM.sendUserName("admin");
 		homePagePOM.sendPassword("admin@123");
 		homePagePOM.clickLoginBtn(); 
@@ -56,26 +57,37 @@ public class SimpleTestCasesTest {
 		homePagePOM.clickSearchBtn();
 		homePagePOM.clickSubscribeBtn();
 		screenShot.captureScreenShot("First");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test(priority=1)
 	public void loginPassTest1() {
+		try {
 		homePagePOM.sendUserName("admin");
 		homePagePOM.sendPassword("admin@123");
 		homePagePOM.clickLoginBtn(); 
 		homePagePOM.clickMyCoursesBtn();
 		homePagePOM.clickSubscribedCourseLnk();
 		screenShot.captureScreenShot("Second");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test(priority=2)
 	public void logoutPassTest() {
+		try {
 		homePagePOM.sendUserName("admin");
 		homePagePOM.sendPassword("admin@123");
 		homePagePOM.clickLoginBtn(); 
 		homePagePOM.clickUserDd();
 		homePagePOM.clickLogOutBtn();
 		screenShot.captureScreenShot("Third");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 
