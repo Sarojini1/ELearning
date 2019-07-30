@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
 import com.training.pom.HomePagePOM;
+import com.training.pom.LoginPOMELearning;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
@@ -19,6 +20,7 @@ public class SimpleTestCasesTest1 {
 	private WebDriver driver; 
 	private String baseUrl; 
 	private HomePagePOM homePagePOM; 
+	private LoginPOMELearning loginPOMELearning;
 	private static Properties properties; 
 	private ScreenShot screenShot; 
 	@BeforeClass
@@ -45,11 +47,9 @@ public class SimpleTestCasesTest1 {
 
 	@Test
 	public void loginPassTest() {
-		homePagePOM.sendUserName("admin");
-		homePagePOM.sendPassword("admin@123");
-		homePagePOM.clickLoginBtn(); 
-		homePagePOM.clickMyCoursesBtn();
-		homePagePOM.clickSubscribedCourseLnk();
+		loginPOMELearning.sendUserName("admin");
+		loginPOMELearning.sendPassword("admin@123");
+		loginPOMELearning.clickLoginBtn(); 
 		screenShot.captureScreenShot("Second");
 	}
 
