@@ -17,16 +17,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class WaitTypes {
 	private WebDriver driver;
-	
+
 	public WaitTypes(WebDriver driver){
 		this.driver = driver;
 	}
-	
-	
+
+
 	// we will have methods which returns the WebElement 
 	// on demand of explicit wait 
-	
-	
+
+
 	// this method will return WebElement 
 	// when on the page it is available for presence
 	// presenceOfElementLocated
@@ -43,7 +43,7 @@ public class WaitTypes {
 		}
 		return null;
 	}
-	
+
 	// this method shall take String parameter, and assumiing that it will 
 	// only send by id 
 	public WebElement presenceElementLocated(String locator, int timeout){
@@ -59,9 +59,9 @@ public class WaitTypes {
 		}
 		return null;
 	}
-	
-	
-	
+
+
+
 	public WebElement waitForElement(By locator, int timeout){
 		try{
 			WebDriverWait wait = new WebDriverWait(driver, timeout);
@@ -69,15 +69,29 @@ public class WaitTypes {
 					ExpectedConditions.visibilityOfElementLocated(locator)
 					);
 			System.out.println("Element Located");
-			
+
 			return element;
 		}catch(Exception e ){
 			System.out.println("Element Not Located " + e);
 		}
 		return null;
 	}
-	
-	
+
+	public WebElement waitForElement(WebElement element, int timeout){        
+		try{            
+			WebDriverWait wait = new WebDriverWait(driver, timeout);        
+			element  = wait.until(                     
+					ExpectedConditions.visibilityOf(element)             
+					);
+			System.out.println("Element Located");
+
+			return element;
+		}catch(Exception e ){
+			System.out.println("Element Not Located " + e);
+		}
+		return element;
+	}
+
 
 	public WebElement elementToBeClickable(By locator, int timeout){
 		try{
@@ -86,7 +100,7 @@ public class WaitTypes {
 					ExpectedConditions.elementToBeClickable(locator)
 					);
 			System.out.println("Element Located");
-			
+
 			return element;
 		}catch(Exception e ){
 			System.out.println("Element Not Located " + e);

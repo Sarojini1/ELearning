@@ -1,8 +1,11 @@
 package com.training.generics;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -20,7 +23,13 @@ public class GenericMethods {
 		this.driver = driver;
 	}
 	
-	
+	public void switchToWindow(WebDriver driver){
+	 	Set<String> s1=driver.getWindowHandles();		
+        Iterator<String> i1=s1.iterator();	
+        String Screen1 = i1.next();
+        String Screen2 = i1.next();
+        driver.switchTo().window(Screen2);
+	}
 	/**
 	 * 
 	 * @param locator 
@@ -81,5 +90,10 @@ public class GenericMethods {
 	// in the DOM 
 	public boolean checkSingleEntry(String locator, String type){
 		return getElementsAsList(locator, type).size() ==1;
+	}
+	
+	// this method scrolls the page 
+	public void scrollToView(WebElement element) {
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 }

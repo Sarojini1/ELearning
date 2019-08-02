@@ -78,16 +78,35 @@ public class MyCoursesPOM {
 	public void clickLogOutBtn() {
 		this.logOutBtn.click();
 	}
-	
-	//user-body
+
 	// Assert validation for subscribed course details displayed
 
-		@FindBys({@FindBy(className="user-body")})
-		private List<WebElement> detailsOfStudent;
+	@FindBys({@FindBy(className="user-body")})
+	private List<WebElement> detailsOfStudent;
 
-		public int getdetailsOfStudentSize() {
-			int size = this.detailsOfStudent.size();
-			return size;
+	public int getdetailsOfStudentSize() {
+		int size = this.detailsOfStudent.size();
+		return size;
+	}
+
+
+	//Medium Testcase01
+
+	//Clicking course displayed
+	@FindBy(xpath="//img[@title='SeleniumE-learning']")
+	private WebElement courseImg;
+
+	public void clickCourseImg() {
+		this.courseImg.click();
+
+	}
+	
+	// Clicking on subscribed course link
+		@FindBy(xpath="//img[@title='SeleniumE-learning']")
+		private WebElement subscribedCourseImg1; 
+
+		public void clickSubscribedCourseImg1() {
+			this.subscribedCourseImg1.click();
 		}
 	
 }
