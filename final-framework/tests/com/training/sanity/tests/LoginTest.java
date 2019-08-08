@@ -4,11 +4,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 import com.training.generics.ScreenShot;
 import com.training.pom.LoginPOM;
@@ -32,7 +32,7 @@ public class LoginTest {
 		properties.load(inStream);
 	}
 
-	@Before
+	@BeforeClass
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver); 
@@ -41,7 +41,7 @@ public class LoginTest {
 		driver.get(baseUrl);
 	}
 
-	@After
+	@AfterClass
 	public void tearDown() throws Exception {
 		Thread.sleep(5000);
 		driver.quit();

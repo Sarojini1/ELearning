@@ -1,17 +1,19 @@
 package com.training.regression.tests;
 
+import org.testng.annotations.Factory;
+import org.testng.annotations.Parameters;
+
+import static org.testng.ConversionUtils.wrapDataProvider;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Properties;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+
 import org.openqa.selenium.WebDriver;
 
 import com.training.bean.LoginBean;
@@ -27,8 +29,12 @@ import com.training.utility.DriverNames;
  * @see program to show working of parameterization with DB 
  */
 
-@RunWith(Parameterized.class)
 public class LoginDBTest {
+//	@Factory
+	//public static Object[] factoryData() {
+	//	return wrapDataProvider(LoginDBTest.class, data());
+	//}
+
 	private WebDriver driver; 
 	private String baseUrl; 
 	private LoginPOM loginPOM; 
@@ -90,7 +96,7 @@ public class LoginDBTest {
 		properties.load(inStream);
 	}
 
-	@Before
+	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
 		loginPOM = new LoginPOM(driver); 
@@ -100,7 +106,7 @@ public class LoginDBTest {
 		driver.get(baseUrl);
 	}
 
-	@After
+	@AfterMethod
 	public void tearDown() throws Exception {
 		Thread.sleep(5000);
 		driver.quit();

@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * 
@@ -18,17 +19,17 @@ import org.openqa.selenium.WebElement;
  */
 public class GenericMethods {
 	WebDriver driver ; 
-	
+
 	public GenericMethods(WebDriver driver){
 		this.driver = driver;
 	}
-	
+
 	public void switchToWindow(WebDriver driver){
-	 	Set<String> s1=driver.getWindowHandles();		
-        Iterator<String> i1=s1.iterator();	
-        String Screen1 = i1.next();
-        String Screen2 = i1.next();
-        driver.switchTo().window(Screen2);
+		Set<String> s1=driver.getWindowHandles();		
+		Iterator<String> i1=s1.iterator();	
+		String Screen1 = i1.next();
+		String Screen2 = i1.next();
+		driver.switchTo().window(Screen2);
 	}
 	/**
 	 * 
@@ -42,7 +43,7 @@ public class GenericMethods {
 	public WebElement getElement(String locator, String type){
 		WebElement element  = null;
 		type = type.toLowerCase();
-		
+
 		if(type.equals("id")){
 			element  =  driver.findElement(By.id(locator));
 		} else if(type.equals("css")){
@@ -61,10 +62,10 @@ public class GenericMethods {
 
 
 	}
-	
-	
+
+
 	// shall give if it has multiple entries as a list in DOM 
-	
+
 	public List<WebElement> getElementsAsList(String locator, String type){
 		type = type.toLowerCase();
 		if(type.equals("id")){
@@ -78,22 +79,34 @@ public class GenericMethods {
 		}// other TODO 
 		return null;
 	}
-	
+
 	// return true if element exists 
 	// this method works for us when we have more than 1 element 
 	// to be found for 
 	public boolean isElementFound(String locator, String type){
 		return getElementsAsList(locator, type).size()>0;
 	}
-	
+
 	// this method gives true only where there is an single entry 
 	// in the DOM 
 	public boolean checkSingleEntry(String locator, String type){
 		return getElementsAsList(locator, type).size() ==1;
 	}
-	
+
 	// this method scrolls the page 
 	public void scrollToView(WebElement element) {
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+	}
+
+	public void selectBy(String selectBy, WebElement element, String text, int index) { 
+		Select select = new Select(element);         
+		switch(selectBy.toUpperCase()) {       
+		case "SelectByVisibleText":            
+			select.selectByVisibleText(text);         
+			break;       
+		case "SelectByIndex":        
+			select.selectByIndex(index);     
+			break;     
+		}
 	}
 }
